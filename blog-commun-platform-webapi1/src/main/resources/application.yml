@@ -1,0 +1,35 @@
+# 端口号
+server:
+  port: 8761
+  # 设置 tomcat 服务器参数
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 200  # 最大线程数
+    max-connections: 1000 # 最大连接数
+
+# 服务名称
+spring:
+  application:
+    name: EUREKA-SERVER
+
+# 配置 eureka 服务器
+eureka:
+  client:
+    # 关闭注册本身服务
+    fetch-registry: false
+    register-with-eureka: false
+    service-url:
+      default-Zone: http://localhost:8761/eureka/
+
+  # 配置 eureka 服务器性能参数：缓存、心跳时间等
+  server:
+    # 默认30s，服务器刷新 readCacheMap 的时间
+    # 决定了 readCacheMap 会多久从 readWriteCacheMap 读取缓存数据
+    response-cache-update-interval-ms: 3000
+    # 默认60s，启用主动失效
+    eviction-interval-timer-in-ms: 5000
+  instance:
+    # 默认90s，服务过期时间配置，超过这个时间没有接收到心跳就将服务剔除
+    lease-expiration-duration-in-seconds: 15
+    # 默认30s，服务刷新时间配置，每隔这个时间会主动心跳一次
+    lease-renewal-interval-in-seconds: 5
